@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://rbac-testenvironment.onrender.com/",
+  baseURL: "https://rbac-testenvironment.onrender.com",
 });
 
 // Add token to requests automatically
