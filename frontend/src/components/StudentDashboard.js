@@ -20,7 +20,7 @@ function StudentDashboard() {
 
         // Fetch tests data
         const testsResponse = await axios.get(
-          `http://localhost:5000/api/student/tests`,
+          `https://rbac-testenvironment.onrender.com/api/student/tests`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -29,7 +29,7 @@ function StudentDashboard() {
 
         // Fetch responses data
         const responsesResponse = await axios.get(
-          `http://localhost:5000/api/student/responses`,
+          `https://rbac-testenvironment.onrender.com/api/student/responses`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }

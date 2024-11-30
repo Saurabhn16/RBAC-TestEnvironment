@@ -12,7 +12,7 @@ function CreateTest() {
     try {
       const token = localStorage.getItem("token");
       await axios.post(
-        "http://localhost:5000/api/teacher/create-test",
+        "https://rbac-testenvironment.onrender.com/api/teacher/create-test",
         { title, questions },
         { headers: { Authorization: `Bearer ${token}` } }
       );

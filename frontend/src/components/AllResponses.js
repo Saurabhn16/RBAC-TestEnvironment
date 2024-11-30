@@ -23,7 +23,7 @@ function AllResponses() {
 
         // Fetch responses
         const { data: responseData } = await axios.get(
-          "http://localhost:5000/api/teacher/test-responses",
+          "https://rbac-testenvironment.onrender.com/api/teacher/test-responses",
           { headers: { Authorization: `Bearer ${token}` } }
         );
 
@@ -34,7 +34,7 @@ function AllResponses() {
 
           // Fetch student details concurrently
           const studentPromises = responseData.map((resp) =>
-            axios.get(`http://localhost:5000/api/student/${resp.student._id}`, {
+            axios.get(`https://rbac-testenvironment.onrender.com/api/student/${resp.student._id}`, {
               headers: { Authorization: `Bearer ${token}` },
             })
           );

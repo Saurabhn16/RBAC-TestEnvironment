@@ -23,7 +23,7 @@ const AddStudent = ({ userRole }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/signup", // Using the same signup API to create a student
+        "https://rbac-testenvironment.onrender.com/signup", // Using the same signup API to create a student
         { username: name, password, role: "student" },
         {
           headers: {
