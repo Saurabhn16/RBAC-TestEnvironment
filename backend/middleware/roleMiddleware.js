@@ -24,26 +24,26 @@ const roleMiddleware = (role) => {
       req.user = decoded; // Attach decoded user data to the request
 
       // Log the decoded user and the required role
-      console.log("Decoded user ID:", req.user.id);
-      console.log("Required role:", role);
+      // console.log("Decoded user ID:", req.user.id);
+      // console.log("Required role:", role);
 
       // Check if the user has the required role
       const user = await User.findById(req.user.id);
       if (!user) {
-        console.log("User not found");
+        // console.log("User not found");
         return res.status(404).json({ message: 'User not found' });
       }
 
-      console.log("User found:", user);
+      // console.log("User found:", user);
       if (user.role === role) {
-        console.log("User has the required role");
+        // console.log("User has the required role");
         return next(); // Proceed to the next middleware/route handler
       }
 
-      console.log("User does not have the required role");
+      // console.log("User does not have the required role");
       return res.status(403).json({ message: 'You do not have the required role' });
     } catch (error) {
-      console.error('Error in roleMiddleware:', error);
+      // console.error('Error in roleMiddleware:', error);
       return res.status(500).json({ message: 'Internal Server Error', error: error.message });
     }
   };

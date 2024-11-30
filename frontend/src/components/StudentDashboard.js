@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-
+import "./student.css";
 function StudentDashboard() {
   const [tests, setTests] = useState([]);
   const [responses, setResponses] = useState([]);
@@ -71,11 +71,11 @@ function StudentDashboard() {
   };
 
   return (
-    <div style={{ padding: "20px", maxWidth: "800px", margin: "auto" }}>
+    <div className="dashboard-container">
       <h2>Student Dashboard</h2>
 
       {loading && <p>Loading data...</p>}
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p className="error-message">{error}</p>}
 
       {!loading && !error && tests.length === 0 && (
         <p>No tests available to attempt.</p>
@@ -83,33 +83,23 @@ function StudentDashboard() {
       {!loading && !error && tests.length > 0 && (
         <div>
           <h3>Tests</h3>
-          <table style={{ width: "100%", borderCollapse: "collapse" }}>
+          <table className="dashboard-table">
             <thead>
               <tr>
-                <th style={{ padding: "10px", border: "1px solid #ddd" }}>
-                  Test Title
-                </th>
-                <th style={{ padding: "10px", border: "1px solid #ddd" }}>
-                  Max Score
-                </th>
-                <th style={{ padding: "10px", border: "1px solid #ddd" }}>
-                  Action
-                </th>
+                <th>Test Title</th>
+                <th>Max Score</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
               {tests.map((test) => (
                 <tr key={test._id}>
-                  <td style={{ padding: "10px", border: "1px solid #ddd" }}>
-                    {test.title}
-                  </td>
-                  <td style={{ padding: "10px", border: "1px solid #ddd" }}>
-                    {getMaxScoreForTest(test._id)}
-                  </td>
-                  <td style={{ padding: "10px", border: "1px solid #ddd" }}>
+                  <td>{test.title}</td>
+                  <td>{getMaxScoreForTest(test._id)}</td>
+                  <td>
                     <Link
                       to={`/student/attempt-test/${test._id}`}
-                      style={{ textDecoration: "none", color: "blue" }}
+                      className="attempt-button"
                     >
                       Attempt Test
                     </Link>
@@ -127,24 +117,18 @@ function StudentDashboard() {
       {!loading && !error && responses.length > 0 && (
         <div>
           <h3>Responses</h3>
-          <table style={{ width: "100%", borderCollapse: "collapse" }}>
+          <table className="dashboard-table">
             <thead>
               <tr>
-                <th style={{ padding: "10px", border: "1px solid #ddd" }}>
-                  Test Title
-                </th>
-                <th style={{ padding: "10px", border: "1px solid #ddd" }}>
-                  Response
-                </th>
+                <th>Test Title</th>
+                <th>Response</th>
               </tr>
             </thead>
             <tbody>
               {responses.map((response) => (
                 <tr key={response._id}>
-                  <td style={{ padding: "10px", border: "1px solid #ddd" }}>
-                    {response.test?.title || "Unknown Test"}
-                  </td>
-                  <td style={{ padding: "10px", border: "1px solid #ddd" }}>
+                  <td>{response.test?.title || "Unknown Test"}</td>
+                  <td>
                     {response.score !== undefined
                       ? `Score: ${response.score}`
                       : "No response yet"}
@@ -156,18 +140,7 @@ function StudentDashboard() {
         </div>
       )}
 
-      <button
-        onClick={handleLogout}
-        style={{
-          marginTop: "20px",
-          padding: "10px 20px",
-          backgroundColor: "#007bff",
-          color: "#fff",
-          border: "none",
-          borderRadius: "5px",
-          cursor: "pointer",
-        }}
-      >
+      <button className="logout-button" onClick={handleLogout}>
         Logout
       </button>
     </div>
@@ -175,3 +148,4 @@ function StudentDashboard() {
 }
 
 export default StudentDashboard;
+
